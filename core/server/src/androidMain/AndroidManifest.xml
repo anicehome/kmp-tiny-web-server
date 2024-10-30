@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application>
+
+        <service
+            android:name=".WebServerService"
+            android:foregroundServiceType="specialUse" />
+        <receiver
+            android:name=".WebServerReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="io.github.anicehome.webserver.Action.Exit"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
