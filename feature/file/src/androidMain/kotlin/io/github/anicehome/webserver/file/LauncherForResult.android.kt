@@ -12,8 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import io.github.anicehome.webserver.database.WebFile
-
-const val GENERIC_MIMETYPE = "*/*"
+import io.github.anicehome.webserver.util.GENERIC_MIMETYPE
 
 class AndroidLauncher(
     private val result: ManagedActivityResultLauncher<Array<String>, List<Uri>>,

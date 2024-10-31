@@ -21,6 +21,7 @@ kotlin {
             implementation(libs.ktor.server.html.builder)
             implementation(projects.core.database)
             implementation(projects.core.system)
+            implementation(projects.core.util)
         }
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)

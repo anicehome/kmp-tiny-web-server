@@ -7,7 +7,6 @@ import io.ktor.http.ContentDisposition
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
-import io.ktor.http.fromFilePath
 import io.ktor.server.application.*
 import io.ktor.server.html.respondHtml
 //import io.ktor.server.http.content.singlePageApplication
@@ -90,8 +89,7 @@ fun Route.listing(webFileRepository:WebFileRepository) {
     get {
         val userAgent :String = call.request.headers["User-Agent"].toString()
 
-
-        val files = getFileInfos(webFileRepository)
+        val webFiles = getFileInfos(webFileRepository)
         val base = call.request.path().trimEnd('/')
         val deviceName = "My Device"
         call.respondHtml {
@@ -118,21 +116,20 @@ fun Route.listing(webFileRepository:WebFileRepository) {
                         }
                     }
                     tbody {
-                        for (finfo in files) {
-                            val rname = finfo.name
+                        for (webFile in webFiles) {
+                            val rname = webFile.name
                             tr {
                                 td {
-                                    a("$base$route_download$route_id${finfo.id}") { +rname }
+                                    a("$base$route_download$route_id${webFile.id}") { +rname }
                                 }
                                 td {
-                                    +dateFormat.format(Date(finfo.lastModified))
+                                    +dateFormat.format(Date(webFile.lastModified))
                                 }
                                 td {
-                                    +"${finfo.size}"
+                                    +"${webFile.size}"
                                 }
                                 td {
-                                    +(ContentType.fromFilePath(finfo.name).firstOrNull()
-                                        ?.toString() ?: "-")
+                                    +webFile.mimeType
                                 }
                             }
                         }

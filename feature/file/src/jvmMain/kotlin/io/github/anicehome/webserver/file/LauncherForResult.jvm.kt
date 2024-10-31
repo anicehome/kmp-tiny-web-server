@@ -2,8 +2,7 @@ package io.github.anicehome.webserver.file
 
 import androidx.compose.runtime.Composable
 import io.github.anicehome.webserver.database.WebFile
-import io.ktor.http.ContentType
-import io.ktor.http.fromFilePath
+import io.github.anicehome.webserver.util.getMimeType
 import javax.swing.JFileChooser
 
 class JvmLauncher(private val result: (Result) -> Unit) : Launcher {
@@ -20,8 +19,7 @@ class JvmLauncher(private val result: (Result) -> Unit) : Launcher {
             val selectedFiles = jFileChooser.selectedFiles
 
             val webFiles = selectedFiles.map { file ->
-                val mimeType = ContentType.fromFilePath(file.name).firstOrNull()
-                    ?.toString() ?: "-"
+                val mimeType = getMimeType(file.name)
                 WebFile(
                     id = 0,
                     uri = file.absolutePath,

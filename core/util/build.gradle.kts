@@ -4,8 +4,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -18,12 +16,8 @@ kotlin {
     jvm()
     sourceSets {
         commonMain.dependencies {
-            api(projects.feature.base)
-            implementation(projects.core.database)
-            implementation(projects.core.system)
-            implementation(projects.core.resource)
-            implementation(projects.core.util)
-            implementation(libs.kotlinx.datetime)
+            api(projects.core.base)
+            implementation(libs.ktor.server.html.builder)
         }
         androidMain.dependencies {
         }
@@ -33,7 +27,7 @@ kotlin {
 }
 
 android {
-    namespace = "io.github.anicehome.webserver.file"
+    namespace = "io.github.anicehome.webserver.util"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
