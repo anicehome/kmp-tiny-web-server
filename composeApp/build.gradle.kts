@@ -77,10 +77,11 @@ compose.desktop {
         mainClass = "io.github.anicehome.webserver.MainKt"
 
         buildTypes.release.proguard {
-            isEnabled.set(false)
+            isEnabled.set(true)
+            configurationFiles.from(project.file("compose-desktop.pro"))
         }
         nativeDistributions {
-            includeAllModules = true
+            modules("jdk.unsupported")
             packageVersion = "1.0.0"
             packageName = "TinyWebServer"
             description = "Web Server"

@@ -19,14 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class io.github.anicehome.webserver.** { *; }
--keep class java.lang.** { *; }
--keep class androidx.sqlite.** { *; }
--keep class kotlinx.coroutines.** { *; }
 
 -dontwarn java.lang.management.ManagementFactory
 -dontwarn java.lang.management.RuntimeMXBean
--dontwarn kotlinx.serialization.KSerializer
--dontwarn kotlinx.serialization.Serializable
--dontwarn org.slf4j.impl.StaticLoggerBinder
 -dontwarn okio.AsyncTimeout$Watchdog
